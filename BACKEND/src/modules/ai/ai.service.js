@@ -9,14 +9,25 @@ const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 // ─── System Prompt ────────────────────────────────────────────────
 
 const buildSystemInstruction = () => {
-  // Use Asia/Jakarta (UTC+7) relative to server time
+  // Use Asia/Jakarta (UTC+7)
   const now = new Date();
-  const jakartaDate = new Date(now.getTime() + (7 * 60 * 60 * 1000));
   
-  const todayISO = jakartaDate.toISOString().split('T')[0];
+  // Robust way to get Jakarta date components
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Jakarta',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+  
+  const todayISO = formatter.format(now); // Gives YYYY-MM-DD
+  
+  // For relative dates, we need a Date object that represents 00:00:00 in Jakarta
+  const jakartaDate = new Date(todayISO + "T00:00:00");
+
   const tomorrow = new Date(jakartaDate.getTime() + 86400000).toISOString().split('T')[0];
   const lusa     = new Date(jakartaDate.getTime() + 172800000).toISOString().split('T')[0];
-  
+
   const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
   const dayName = days[jakartaDate.getDay()];
 
@@ -74,7 +85,7 @@ Field rules:
 - activities[].type
     • "schedule" → appointments, meetings, classes, social events, or when user says "jadwal", "acara"
     • "task"     → personal work, chores, "todo list", "daftar tugas", studying, exercise
-- activities[].date → always YYYY-MM-DD. Resolve relative terms: "besok"=${tomorrow}, "hari ini"=${todayISO}, "lusa"=${new Date(today.getTime() + 172800000).toISOString().split('T')[0]}
+- activities[].date → always YYYY-MM-DD. Resolve relative terms: "besok"=${tomorrow}, "hari ini"=${todayISO}, "lusa"=${lusa}
 - activities[].startTime / endTime → "HH:MM" 24-hour format (e.g. 13:00 instead of 01:00), or null if not mentioned
 - activities[].endTime → if not mentioned, infer by adding 1 hour to startTime using 24-hour logic (e.g. 12:00 + 1h = 13:00); if startTime also null, set null
 - activities[].priority → infer from context: exam/deadline → "high", social/routine → "medium", leisure → "low", unknown → null

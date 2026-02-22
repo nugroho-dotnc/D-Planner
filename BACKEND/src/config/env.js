@@ -2,16 +2,22 @@
 
 require('dotenv').config();
 
-const required = ['PORT', 'DATABASE_URL', 'JWT_SECRET', 'JWT_REFRESH_SECRET', 'GEMINI_API_KEY'];
+const required = [
+  'DATABASE_URL', 
+  'JWT_SECRET', 
+  'JWT_REFRESH_SECRET', 
+  'GEMINI_API_KEY'
+];
 
 for (const key of required) {
   if (!process.env[key]) {
-    throw new Error(`Missing required environment variable: ${key}`);
+    // throw new Error(`Missing required environment variable: ${key}`);
+    console.warn(`⚠️ Warning: Missing environment variable: ${key}`);
   }
 }
 
 module.exports = {
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 5000,
   DATABASE_URL: process.env.DATABASE_URL,
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET,

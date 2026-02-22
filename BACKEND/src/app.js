@@ -16,6 +16,10 @@ const { errorHandler } = require('./middlewares/error.middleware');
 
 const app = express();
 
+console.log('🔥 App loaded');
+console.log('DB URL exists:', !!process.env.DATABASE_URL);
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 // ─── Security & Logging ──────────────────────────────────────────
 app.use(helmet());
 app.use(cors({
