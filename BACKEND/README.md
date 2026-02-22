@@ -1,6 +1,65 @@
-# Chat Planner — API Documentation
+# D-Planner Backend 🛠️
 
-Base URL: `http://localhost:3000/api`
+The backend of D-Planner is a robust Node.js API built with Express, featuring AI integration for natural language processing and Prisma ORM for database management.
+
+---
+
+## 🚀 Tech Stack
+
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MySQL / PostgreSQL (via Prisma)
+- **AI**: Google Gemini (generative-ai)
+- **Authentication**: JWT & Bcrypt.js
+- **Validation**: Express-Validator
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- A MySQL or PostgreSQL instance
+- Google Gemini API Key
+
+### Installation
+
+1. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+2. **Configure Environment Variables**:
+   Create a `.env` file in this directory and fill it with your credentials:
+
+   ```env
+   PORT=5000
+   DATABASE_URL="mysql://your_user:your_password@localhost:3306/d_planner"
+   JWT_SECRET="your_secret_key"
+   REFRESH_TOKEN_SECRET="your_refresh_secret"
+   GEMINI_API_KEY="your_google_ai_key"
+   FRONTEND_URL="http://localhost:5173"
+   ```
+
+3. **Initialize Database**:
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
+
+### Scripts
+
+- `npm run dev`: Start server with nodemon (development)
+- `npm start`: Start production server
+- `npm run prisma:studio`: Open Prisma interactive UI
+
+---
+
+## 📖 API Documentation
+
+Base URL: `http://localhost:5000/api`
 
 All protected routes require the header:
 
@@ -8,7 +67,7 @@ All protected routes require the header:
 Authorization: Bearer <accessToken>
 ```
 
-All responses follow this envelope:
+Responses Envelope:
 
 ```json
 {

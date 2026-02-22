@@ -1,16 +1,71 @@
-# React + Vite
+# D-Planner Frontend 🎨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend of D-Planner is a premium React application featuring a futuristic "Liquidmorphism" design, smooth animations, and AI-assisted planning capabilities.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **AI Chat Interface**: Real-time integration with Gemini to parse plans and tasks.
+- **Dynamic Dashboard**: Interactive stats (Focus Time, Productivity) with time-based filtering.
+- **Task & Schedule Management**: Clean timeline views and drag-and-drop-like smooth sorting.
+- **Premium UI**:
+  - Glassmorphism & Backdrop blur effects.
+  - Floating Island Navigation.
+  - Liquid active tab indicators using Framer Motion.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **State Management**: [SWR](https://swr.vercel.app/) (Data fetching & Cache)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- Backend server running (default: `http://localhost:5000`)
+
+### Installation
+
+1. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+2. **Configure Environment Variables**:
+   Create a `.env` file in this directory:
+   ```env
+   VITE_API_BASE_URL="http://localhost:5000"
+   ```
+
+### Scripts
+
+- `npm run dev`: Start local development server
+- `npm run build`: Build for production
+- `npm run preview`: Preview the production build locally
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── app/         # Router and layout configurations
+├── components/  # Reusable UI components (cards, navigation, feedback)
+├── hooks/       # Custom React hooks (auth, activities, tasks, notes)
+├── layouts/     # Page layout wrappers (Auth, App, Shared)
+├── pages/       # main views (Dashboard, Task, Activity, Notes, Auth)
+├── services/    # API calling layer using Axios
+├── styles/      # Global CSS and Tailwind directives
+└── utils/       # Shared helper functions
+```
